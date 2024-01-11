@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h2>Danh sach thanh pho</h2><br>
+<a th:href="@{/citys/create}">Add new City</a>
+<table>
+    <tr>
+        <td>id</td>
+        <td>nameCity</td>
+        <td>nameCountry</td>
+        <td>acreage</td>
+        <td>Gdp</td>
+        <td>Delete</td>
+        <td>Edit</td>
+    </tr>
+
+    <tr th:each="row : ${listCity}">
+        <td th:text="${row.id}"></td>
+        <td><a th:href="@{/citys/{id}/view(id=${row.id})}" th:text="${row.name}">
+        </a></td>
+        <td th:text="${row.country}"></td>
+        <td th:text="${row.acreage}"></td>
+        <td th:text="${row.gdp}"></td>
+        <td>
+            <a th:href = "@{/citys/{id}/delete(id=${row.id})}">delete</a>
+        </td>
+        <td>
+            <a th:href = "@{/citys/{id}/edit(id=${row.id})}">edit</a>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>

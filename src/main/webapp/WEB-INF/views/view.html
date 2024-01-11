@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view</title>
+</head>
+<body>
+<a th:href="@{/citys}">
+  Back to List Song
+</a><br>
+
+<p>id</p>
+<label th:text = "${city.id}"></label> <br>
+<p>nameCity</p>
+<label th:text = "${city.name}"></label><br>
+<p>nameCountry</p>
+<label th:text = "${city.country}"></label><br>
+<p>Acreage</p>
+<label th:text = "${city.acreage}"></label><br>
+<p>Gdp</p>
+<label th:text = "${city.gdp}"></label><br>
+<p>Description</p>
+<label th:text = "${city.description}"></label>
+</body>
+</html>
