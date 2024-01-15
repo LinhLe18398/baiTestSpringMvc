@@ -39,6 +39,7 @@ dependencies {
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 
     implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.7.0'
+    implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

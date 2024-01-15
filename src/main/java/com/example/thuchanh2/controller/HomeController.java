@@ -3,13 +3,16 @@ package com.example.thuchanh2.controller;
 import com.example.thuchanh2.model.City;
 import com.example.thuchanh2.service.HibernateCityService;
 import com.example.thuchanh2.service.ICityService;
+import jdk.internal.icu.text.NormalizerBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -42,7 +45,13 @@ public class HomeController {
     }
 
     @PostMapping("/save")
-    public ModelAndView save(City city) {
+    public ModelAndView save(@Valid City city, BindingResult bindingResult ) {
+        if (bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("/create");
+            modelAndView.addObject("listErr",bindingResult.getAllErrors());
+            return modelAndView;
+
+        }
         ModelAndView modelAndView = new ModelAndView("redirect:/citys");
         cityService.save(city);
         List<City> cityList = cityService.findAll();
@@ -73,7 +82,13 @@ public class HomeController {
     }
 
     @PostMapping("/edit")
-    public ModelAndView updateCustomer(City city) {
+    public ModelAndView updateCustomer(@Valid City city, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("/edit");
+            modelAndView.addObject("listErr",bindingResult.getAllErrors());
+            return modelAndView;
+
+        }
         ModelAndView modelAndView = new ModelAndView("redirect:/citys");
         cityService.save(new City(city.getId(),city.getName(),city.getCountry(),city.getAcreage(),city.getNumberOfPeople(),city.getGdp(),city.getDescription()));
         List<City> thanhPhoList = cityService.findAll();

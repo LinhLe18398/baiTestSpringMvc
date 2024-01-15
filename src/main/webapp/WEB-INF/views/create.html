@@ -7,6 +7,10 @@
 <body>
 <h3>Create new City</h3></br>
 <a th:href="@{/citys}">Back to List</a>
+<div th:each = "row : ${listErr}">
+    <h1 th:text="${row.getDefaultMessage()}"></h1>
+
+</div>
 <form th:action="@{/citys/save}" method="post" novalidate="novalidate" th:object="${city}" >
     <div>
         <label>

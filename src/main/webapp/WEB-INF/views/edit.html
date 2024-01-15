@@ -6,7 +6,12 @@
 </head>
 <body>
 <a th:href="@{/citys}">Back to List</a>
+<div th:each = "row : ${listErr}">
+    <h1 th:text="${row.getDefaultMessage()}"></h1>
+
+</div>
 <form th:action="@{/citys/edit}" method="post" novalidate="novalidate" th:object="${city}" >
+    <input type="hidden" th:field = "*{id}">
     <div>
         <label>
             NameCity

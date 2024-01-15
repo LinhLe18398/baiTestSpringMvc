@@ -1,16 +1,20 @@
 package com.example.thuchanh2.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message = "Ban phai nhap ten")
     private String name;
     private String country;
     private int acreage;
     private int numberOfPeople;
+    @Min(value = 10, message = "Ban phai nhap lon hon 10")
     private int gdp;
     private String description;
 
